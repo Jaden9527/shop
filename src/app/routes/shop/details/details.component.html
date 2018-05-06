@@ -1,0 +1,106 @@
+<div nz-row style="height: 30px;"></div>
+<div nz-row [nzGutter]="8">
+    <div nz-col [nzSm]="2"></div>
+    <div nz-col [nzSm]="10">
+        <img src="{{query.pic}}" style="width: 80%;">
+    </div>
+    <div nz-col [nzSm]="10">
+        <div nz-row style="margin-bottom: 20px;">
+            <p style="font-weight:bold;color:#333333;font-size: 26px">{{query.shopName}}</p>
+        </div>
+        <div nz-row style="margin-bottom: 20px;">
+            <p style="color:#999999;">{{query.shopDesc}}</p>
+        </div>
+        <div nz-row style="margin-bottom: 20px;">
+            <h1 style="color: red;">¥{{query.money}}</h1>
+        </div>
+        <div nz-row style="margin-bottom: 20px;">
+            <span>规格：</span>
+            <label nz-radio-button>
+                <span>{{query.shopSpec}}</span>
+            </label>
+        </div>
+        <div nz-row style="margin-bottom: 20px;">
+            <span>数量：</span>
+            <nz-input-number [(ngModel)]="query.number" name="number" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+        </div>
+        <div nz-row style="margin-bottom: 20px;">
+            <button nz-button (click)="buy()" style="margin-right: 30px" [nzSize]="'large'">
+                <span>立即购买</span>
+            </button>
+            <button nz-button (click)="shopcar()" [nzType]="'primary'" [nzSize]="'large'">
+                <span>
+                    <i class="anticon anticon-shopping-cart"></i>加入购物车</span>
+            </button>
+        </div>
+    </div>
+    <div nz-col [nzSm]="2"></div>
+</div>
+
+<div nz-row [nzGutter]="8">
+    <div nz-col [nzSm]="2"></div>
+    <div nz-col [nzSm]="20">
+        <nz-card>
+            <nz-card-tab nzTabHeading="评价">
+                <div nz-row class="mb-sm text-left">
+                    <strong style="font-size: 18px">好评率：</strong>
+                    <strong style="font-size: 18px;color: red">{{rate}}%</strong>
+                </div>
+                <div nz-row *ngFor="let data of judge" [nzType]="'flex'" [nzJustify]="'center'" [nzAlign]="'middle'" class="py-sm bg-grey-lighter-h point">
+                    <div nz-col [nzSpan]="4" class="text-center">
+                        <strong>{{data.userName}}</strong>
+                    </div>
+                    <div nz-col [nzSpan]="20">
+                        <nz-rate [ngModel]="data.number" nzAllowHalf nzDisabled></nz-rate>
+                        <div>{{data.content}}</div>
+                        <div>{{data.date |_date}}</div>
+                    </div>
+                </div>
+            </nz-card-tab>
+            <nz-card-tab nzTabHeading="商品问答">
+                <div style="padding:15px;border: 1px solid #e8e8e8;background-color: #FFFFFF;margin-bottom:15px;">
+                    <form nz-form>
+                        <div nz-row nz-form-item [nzGutter]="8" style="margin-bottom:0;">
+                            <div nz-form-control nz-col [nzSm]="12">
+                                <nz-input [nzPlaceHolder]="'请输入提问内容'" [(ngModel)]="issues.question" name="question"></nz-input>
+                            </div>
+                            <div nz-form-control nz-col [nzSm]="3">
+                                <button nz-button [nzType]="'primary'" (click)="question()">
+                                    <span>提问</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div style="padding:15px;border: 1px solid #e8e8e8;background-color: #FFFFFF;margin-bottom:15px;">
+                    <div nz-row *ngFor="let data of options" [nzType]="'flex'" [nzJustify]="'center'" [nzAlign]="'middle'" class="py-sm bg-grey-lighter-h point">
+                        <div nz-col [nzSpan]="4" class="text-center">
+                            <strong style="color: red">提问</strong>
+                        </div>
+                        <div nz-col [nzSpan]="20">
+                            <div nz-row>
+                                <div nz-col><b>{{data.question}}</b></div>
+                                <div nz-col>{{data.questionName}}&nbsp;&nbsp;{{data.questionDate |_date}}</div>
+                                <br>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="4" class="text-center">
+                            <strong style="color: #108EE9">回答</strong>
+                        </div>
+                        <div nz-col [nzSpan]="20">
+                            <div nz-row>
+                                <div nz-col>
+                                    <b  *ngIf="data.status == '0'">暂时没有回复！</b>
+                                    <b *ngIf="data.status == '1'">{{data.answer}}</b>
+                                </div>
+                                <div nz-col>{{data.answerName}}&nbsp;&nbsp;{{data.answerDate |_date}}</div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nz-card-tab>
+        </nz-card>
+    </div>
+    <div nz-col [nzSm]="2"></div>
+</div>

@@ -1,0 +1,100 @@
+<div class="content__title">
+    <h1>
+        修改资料
+    </h1>
+</div>
+
+<nz-card style="min-height: 380px">
+    <form nz-form [formGroup]="form">
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>用户名</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                {{form.value.account}}
+            </div>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>收件人</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="userName" name="userName"></nz-input>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>收件地址</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="address" name="address"></nz-input>
+            </div>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>联系电话</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="mobile" name="mobile"></nz-input>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>密码</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <a (click)="resetFn()">修改密码</a>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <button nz-button [nzType]="'primary'" (click)="load()">
+                    <span>保存</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</nz-card>
+
+<nz-modal [nzVisible]="showModal" [nzMaskClosable]="false" [nzTitle]="'修改密码'" [nzContent]="modalContent" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()" [nzWidth]="'40%'">
+    <ng-template #modalContent>
+        <form nz-form [formGroup]="basic" (ngSubmit)="submitForm()">
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSm]="6">
+                    <label for="" nz-form-item-required>
+                        <span>
+                            用户名
+                        </span>
+                    </label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="18" nzHasFeedback>
+                    {{settings.user.account}}
+                </div>
+            </div>
+            <div nz-form-item nz-row>
+                    <div nz-form-label nz-col [nzSm]="6">
+                      <label for="content" nz-form-item-required>
+                        <span>
+                            新密码 
+                        </span>
+                      </label>
+                    </div>
+                    <div nz-form-control nz-col [nzSm]="18" nzHasFeedback > 
+                      <nz-input formControlName="password"  [nzId]="'password'" [nzType]="'password'" (ngModelChange)="updateConfirmValidator()"></nz-input>
+                      <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">请输入密码!</div>
+                    </div>
+                  </div>
+                  <div nz-form-item nz-row>
+                    <div nz-form-label nz-col [nzSm]="6">
+                      <label for="content" nz-form-item-required>
+                        <span>
+                            确认密码 
+                        </span>
+                      </label>
+                    </div>
+                    <div nz-form-control nz-col [nzSm]="18" nzHasFeedback > 
+                      <nz-input formControlName="checkPassword"  [nzId]="'checkPassword'" [nzType]="'password'"></nz-input>
+                      <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('required')">请确认密码!</div>
+                    <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('confirm')">两次密码不一致!</div> 
+                    </div>
+                  </div>
+        </form>
+    </ng-template>
+</nz-modal>

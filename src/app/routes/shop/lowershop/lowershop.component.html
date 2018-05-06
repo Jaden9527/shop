@@ -1,0 +1,78 @@
+<div class="content__title">
+    <h1>
+        下架商品
+    </h1>
+</div>
+<div style="padding:15px;border: 1px solid #e8e8e8;background-color: #FFFFFF;margin-bottom:15px;">
+    <form nz-form>
+        <div nz-row nz-form-item [nzGutter]="8" style="margin-bottom:0;">
+            <div nz-form-label nz-col [nzSm]="3">
+                <label>商品种类</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <nz-select [(ngModel)]="query.class" name="class" nzPlaceHolder nzAllowClear>
+                    <nz-option [nzLabel]="'服饰'" [nzValue]="'a'"></nz-option>
+                    <nz-option [nzLabel]="'电器'" [nzValue]="'b'"></nz-option>
+                    <nz-option [nzLabel]="'饮食'" [nzValue]="'c'"></nz-option>
+                </nz-select>
+            </div>
+            <div nz-form-label nz-col [nzSm]="3">
+                <label>商品名称</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <nz-input [(ngModel)]="query.shopName" name="customerCode"></nz-input>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <button nz-button [nzType]="'primary'" (click)="load()">
+                    <span>查询</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<nz-card style="min-height: 300px;" >
+  <nz-table #nzTable4 [nzSize]="'small'" [nzAjaxData]="list" [nzIsPagination]="false">
+    <thead nz-thead>
+        <tr>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>商品名称</span>
+            </th>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>商品描述</span>
+            </th>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>商品金额</span>
+            </th>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>商品规格</span>
+            </th>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>商品种类</span>
+            </th>
+            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                <span>交易操作</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody nz-tbody>
+        <tr nz-tbody-tr *ngFor="let data of nzTable4.data; let i = index">
+            <td nz-td>
+                <img src="{{data.pic}}">{{data.shopName}}</td>
+            <td nz-td>￥{{data.shopDesc}}</td>
+            <td nz-td>{{data.money}}</td>
+            <td nz-td>￥{{data.shopSpec}}</td>
+            <td nz-td>
+                <nz-tag *ngIf="data.class=='a'">服饰</nz-tag>
+                <nz-tag *ngIf="data.class=='b'">电器</nz-tag>
+                <nz-tag *ngIf="data.class=='c'">饮食</nz-tag>
+            </td>
+            <td nz-td>
+                <a (click)="deleteFn(data)">下架</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+</nz-card>
+
+

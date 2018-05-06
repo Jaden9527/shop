@@ -1,0 +1,13 @@
+<div class="wrapper" style="background-color: white;">
+    <div class="router-progress-bar" *ngIf="isFetching"></div>
+    <app-header class="header"></app-header>
+    <app-sidebar class="aside"></app-sidebar>
+    <section class="content" >
+        <reuse-tab></reuse-tab>
+        <router-outlet></router-outlet>
+    </section>
+    <div style="background-color: #414141;color: #999999;width: 100%;height: 80px;text-align: center;line-height: 80px; ">
+    XX公司版权所有 © 1997-2018 经营许可证：JYXXXXXXXXX
+</div>
+</div>
+

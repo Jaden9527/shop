@@ -1,0 +1,63 @@
+<div class="content__title">
+    <h1>
+        上架商品
+    </h1>
+</div>
+
+<form nz-form [formGroup]="form">
+    <nz-card style="min-height: 380px">
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品名称</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="shopName" name="shopName"></nz-input>
+            </div>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品描述</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="shopDesc" name="shopDesc"></nz-input>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品规格</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+              <nz-input formControlName="shopSpec" name="shopSpec"></nz-input>
+            </div>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品金额</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+              <nz-input-number formControlName="money" name="money" [nzMin]="0.5" [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品分类</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-select formControlName="class" name="class" nzPlaceHolder nzAllowClear>
+                    <nz-option [nzLabel]="'服饰'" [nzValue]="'a'"></nz-option>
+                    <nz-option [nzLabel]="'电器'" [nzValue]="'b'"></nz-option>
+                    <nz-option [nzLabel]="'饮食'" [nzValue]="'c'"></nz-option>
+                </nz-select>
+            </div>
+            <div nz-form-label nz-col [nzSm]="6">
+                <label>商品图片</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="6">
+                <nz-input formControlName="pic" name="pic"></nz-input>
+            </div>
+        </div>
+        <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6">
+                <button nz-button [nzType]="'primary'" (click)="load()">
+                    <span>确定</span>
+                </button>
+            </div>
+      </div>
+    </nz-card>
+</form>

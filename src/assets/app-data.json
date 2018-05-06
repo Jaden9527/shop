@@ -1,0 +1,87 @@
+{
+    "app": {
+        "name": "购物商城",
+        "description": "购物商城"
+    },
+    "user": {
+        "name": "Admin",
+        "avatar": "./assets/img/zorro.svg",
+        "email": "cipchk@qq.com",
+        "token": ""
+    },
+    "menu": [{
+        "text": "主导航",
+        "group": true,
+        "children": [{
+                "text": "主页",
+                "link": "/index/dashboard",
+                "icon": "icon-speedometer",
+                "data": {
+                    "text": "主页"
+                }
+            },
+            {
+                "text": "商品",
+                "link": "/index/shop/search",
+                "icon": "anticon anticon-shop",
+                "data": {
+                    "text": "商品"
+                }
+            },
+            {
+                "text": "个人中心",
+                "group": true,
+                "icon": "anticon anticon-user",
+                "children": [{
+                    "text": "购物车",
+                    "link": "/index/shop/shopcar"
+                }, {
+                    "text": "我的订单",
+                    "link": "/index/shop/order"
+                }, {
+                    "text": "修改资料",
+                    "link": "/index/shop/userupdate"
+                }]
+            }
+        ]
+    }],
+    "admin": [{
+        "text": "主导航",
+        "group": true,
+        "children": [{
+                "text": "主页",
+                "link": "/index/dashboard",
+                "icon": "icon-speedometer",
+                "data": {
+                    "text": "主页"
+                }
+            },
+            {
+                "text": "商品",
+                "link": "/index/shop/search",
+                "icon": "anticon anticon-shop",
+                "data": {
+                    "text": "商品"
+                }
+            },
+            {
+                "text": "管理员",
+                "group": true,
+                "icon": "anticon anticon-github",
+                "children": [{
+                    "text": "上架商品",
+                    "link": "/index/shop/insertshop"
+                }, {
+                    "text": "下架商品",
+                    "link": "/index/shop/lowershop"
+                }, {
+                    "text": "订单详情",
+                    "link": "/index/shop/adminorder"
+                }, {
+                    "text": "留言管理",
+                    "link": "/index/shop/adminissues"
+                }]
+            }
+        ]
+    }]
+}

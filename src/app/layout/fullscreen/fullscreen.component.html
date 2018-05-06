@@ -1,0 +1,26 @@
+<!--  导航栏 -->
+<ul nz-menu [nzMode]="'horizontal'" style="background-color:#F5F5F5">
+    <li nz-menu-item style="float: left;margin-left: 80px">
+        <i class="anticon anticon-shop"></i>首页</li>
+    <li nz-menu-item style="float: right;margin-right: 80px">
+        <a routerLink="/passport/login">登录</a>
+    </li>
+    <li nz-menu-item style="float: right;">
+        <i class="anticon anticon-shopping-cart"></i>购物车</li>
+    <li nz-submenu style="float: right;">
+        <span title>
+            <i class="anticon anticon-user"></i>用户</span>
+        <ul>
+            <li nz-menu-item>
+                <i class="icon-people"></i>个人中心</li>
+            <li nz-menu-item>
+                <a routerLink="/passport/login">
+                    <i class="icon-logout"></i>退出登录</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<router-outlet></router-outlet>
+<div style="background-color: #414141;color: #999999;width: 100%;height: 80px;text-align: center;line-height: 80px; ">
+    XX公司版权所有 © 1997-2018 经营许可证：JYXXXXXXXXX
+</div>

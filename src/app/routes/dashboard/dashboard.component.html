@@ -1,0 +1,157 @@
+<!-- 查询框 -->
+<div nz-row>
+    <div nz-col [nzSm]="10"></div>
+    <div nz-col [nzSm]="4">
+        <img src="http://yanxuan.nosdn.127.net/5818a5d9242f84ccb54bc025b2c2db4a.gif" style="margin-left: -150px;height: 120px;">
+    </div>
+    <div nz-col [nzSm]="5" style="line-height: 120px">
+        <nz-input [(ngModel)]=" query.search " name="search "></nz-input>
+    </div>
+    <div nz-col [nzSm]="3" style="line-height: 120px">
+        <button nz-button [nzType]="'primary'" (click)="queryFn()">
+            <span>查询</span>
+        </button>
+    </div>
+</div>
+
+<div>
+    <img src="https://yanxuan.nosdn.127.net/dd2bfbdeedceff137b2d31a72488e1ae.jpg?quality=95&amp;thumbnail=1920x420&amp;imageView "
+        style="width: 100%;height: 300px ">
+</div>
+
+<div nz-row>
+    <div nz-col [nzSm]="4"></div>
+    <div nz-col [nzSm]="16">
+        <div nz-row>
+            <p style="font-weight:bold;color:#333333;font-size: 26px">服饰</p>
+            <p style="text-align: right" (click)= "moreFn('a')">查看更多 ></p>
+            <img style="width: 100%" src="https://yanxuan.nosdn.127.net/dc9400797d24c688ea7734d825b51db7.jpg?imageView&amp;&amp;thumbnail=1090x310&amp;quality=95">
+        </div>
+        <div nz-row>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/e5fb1eadbb5daeafcc3afcaf0766e156.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">Paris名媛睡袍</p>
+                <p style="color: red;font-size: 14px">¥239</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/ba33eeedb5ca88c0de2039c2d297621b.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">女式超轻便携羽绒背心</p>
+                <p style="color: red;font-size: 14px">¥219</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/8e5efdc861416449d8467c34f027d4b4.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">男式色拉姆保暖内衣套装</p>
+                <p style="color: red;font-size: 14px">¥139</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border: 1px;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/07b59c4612704de9169e9aa6d8edeb3a.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">女式天丝棉弹小脚牛仔裤</p>
+                <p style="color: red;font-size: 14px">¥189</p>
+            </div>
+        </div>
+    </div>
+    <div nz-col [nzSm]="4"></div>
+</div>
+
+<div nz-row>
+    <div nz-col [nzSm]="4"></div>
+    <div nz-col [nzSm]="16">
+        <div nz-row>
+            <p style="font-weight:bold;color:#333333;font-size: 26px">电器</p>
+            <p style="text-align: right" (click)= "moreFn('b')">查看更多 ></p>
+            <img style="width: 100%" src="https://yanxuan.nosdn.127.net/ba250b6db6400cbaf9010584558720b8.jpg?imageView&amp;&amp;thumbnail=1090x310&amp;quality=95">
+        </div>
+        <div nz-row>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/dd31bd4414cea10f27554475b46fd9f8.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">健康体脂秤</p>
+                <p style="color: red;font-size: 14px">¥129</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/835612e5c90c335ad6977f84d34f8d23.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">变速式声波电动牙刷</p>
+                <p style="color: red;font-size: 14px">¥219</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/9b18559859b22777edcfd9f49d37dafe.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">马卡龙系列移动电源</p>
+                <p style="color: red;font-size: 14px">¥89</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border: 1px;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/2e7ec7849305e0c02991b9f3dfc2a498.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">X3蓝牙HiFi耳机</p>
+                <p style="color: red;font-size: 14px">¥199</p>
+            </div>
+        </div>
+    </div>
+    <div nz-col [nzSm]="4"></div>
+</div>
+
+<div nz-row style="background-color:#F4F0EA">
+    <div nz-col [nzSm]="4"></div>
+    <div nz-col [nzSm]="16">
+        <div nz-row>
+            <p style="font-weight:bold;color:#333333;font-size: 26px">饮食</p>
+            <p style="text-align: right" (click)= "moreFn('c')">查看更多 ></p>
+            <img style="width: 100%" src="https://yanxuan.nosdn.127.net/e8cb8256e627f50215999822287afa6a.jpg?imageView&amp;&amp;thumbnail=1090x310&amp;quality=95">
+        </div>
+        <div nz-row>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/05ad2a2bb4bdcaad5ba3ba18de5f5970.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">古法黑糖&nbsp;168克</p>
+                <p style="color: red;font-size: 14px">¥19</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/66b9f1638c0517d179262f14ed1345f9.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">绿豆糕</p>
+                <p style="color: red;font-size: 14px">¥13</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/661159d06f17482caabd7d76ec7607db.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">大核桃仁(生)&nbsp;118克</p>
+                <p style="color: red;font-size: 14px">¥21</p>
+            </div>
+            <div nz-col [nzSm]="6" style="text-align: center;border: 1px;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/5fe3aecd1557871bf86f5fff9a94eb5b.png?quality=95&amp;thumbnail=265x265&amp;imageView">
+                <br>
+                <p style="font-weight:bold;font-size: 14px">麦卢卡蜂蜜MGO250+</p>
+                <p style="color: red;font-size: 14px">¥199</p>
+            </div>
+        </div>
+    </div>
+    <div nz-col [nzSm]="4"></div>
+</div>
+
+<div nz-row>
+    <div nz-col [nzSm]="4"></div>
+    <div nz-col [nzSm]="16">
+        <div nz-row>
+            <p style="font-weight:bold;color:#333333;font-size: 26px">甄选家</p>
+        </div>
+        <div nz-row>
+            <div nz-col [nzSm]="14" style="height: 99%;;text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <img src="https://yanxuan.nosdn.127.net/b21b20f34d5007f961c182273a5d429f.jpg?imageView&amp;quality=95&amp;thumbnail=690y380">
+            </div>
+            <div nz-col [nzSm]="8" style="text-align: center;border-right: 3px solid white;background-color: #F4F4F4">
+                <div nz-row>
+                    <img src="https://yanxuan.nosdn.127.net/9548e1f1a0ba0436cb13d586c50284be.jpg?imageView&amp;quality=95&amp;thumbnail=390y185">
+                </div>
+                <div nz-row>
+                    <img src="https://yanxuan.nosdn.127.net/4a56bf536141eb2ad84f8f8f0e0418ab.jpg?imageView&amp;quality=95&amp;thumbnail=390y185">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-col [nzSm]="4"></div>
+</div>

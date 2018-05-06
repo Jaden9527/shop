@@ -1,0 +1,42 @@
+<div style="padding:15px;border: 1px solid #e8e8e8;background-color: #FFFFFF;margin-bottom:15px;">
+    <form nz-form>
+        <div nz-row nz-form-item [nzGutter]="8" style="margin-bottom:0;">
+            <div nz-form-label nz-col [nzSm]="3">
+                <label>商品种类</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <nz-select [(ngModel)]="query.class" name="class" nzPlaceHolder nzAllowClear>
+                    <nz-option [nzLabel]="'服饰'" [nzValue]="'a'"></nz-option>
+                    <nz-option [nzLabel]="'电器'" [nzValue]="'b'"></nz-option>
+                    <nz-option [nzLabel]="'饮食'" [nzValue]="'c'"></nz-option>
+                </nz-select>
+            </div>
+            <div nz-form-label nz-col [nzSm]="3">
+                <label>商品名称</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <nz-input [(ngModel)]="query.shopName" name="shopName" nzAllowClear></nz-input>
+            </div>
+            <div nz-form-control nz-col [nzSm]="3">
+                <button nz-button [nzType]="'primary'" (click)="load()">
+                    <span>搜索</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div nz-row [nzGutter]="8" style="min-height: 430px">
+    <div nz-col [nzSpan]="6" *ngFor="let option of list">
+        <nz-card style="width:260px;" (click)="moreFn(option)">
+            <ng-template #body>
+                <div class="custom-image" style="background-color: #DBDCDE">
+                    <img alt="example" style="height: 260px" width="100%" src="{{option.pic}}" />
+                </div>
+                <div class="custom-card">
+                    <p style="color: black;text-align: center;font-weight:bold;font-size: 14px">{{option.shopName}}</p>
+                    <p style="text-align: center;color: red;font-size: 14px">￥{{option.money}}元</p>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>

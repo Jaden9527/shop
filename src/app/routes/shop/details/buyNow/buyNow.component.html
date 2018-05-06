@@ -1,0 +1,16 @@
+<nz-card [nzBordered]="false" [nzNoHovering]="true">
+  <ng-template #body>
+    <nz-card>
+      <nz-steps [(nzCurrent)]="item.step">
+        <nz-step nzTitle="填写订单信息"></nz-step>
+        <nz-step nzTitle="确认订单信息"></nz-step>
+        <nz-step nzTitle="完成"></nz-step>
+      </nz-steps>
+    </nz-card>
+    <nz-card>
+      <app-step1 [shopId]='shopId' [amount]='amount' [address]='address' *ngIf="item.step==0"></app-step1>
+      <app-step2 *ngIf="item.step==1"></app-step2>
+      <app-step3 *ngIf="item.step==2"></app-step3>
+    </nz-card>
+  </ng-template>
+</nz-card>

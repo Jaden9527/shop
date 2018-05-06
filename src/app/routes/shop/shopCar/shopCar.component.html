@@ -1,0 +1,60 @@
+<div nz-row style="height: 30px;"></div>
+<div nz-row [nzGutter]="8" style="min-height: 600px">
+    <div nz-col [nzSm]="2"></div>
+    <div nz-col [nzSm]="20">
+        <nz-table #nzTable [nzSize]="'small'" [nzAjaxData]="list" [nzIsPagination]="false" >
+            <thead nz-thead>
+                <tr>
+                    <th nz-th [nzCheckbox]="true" style="background: #F7F7F7;font-weight: bold;">
+                        <label nz-checkbox [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate" (ngModelChange)="_checkAll()">
+                        </label>
+                    </th>
+                    <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                        <span>商品信息</span>
+                    </th>
+                    <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                        <span>商品单价</span>
+                    </th>
+                    <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                        <span>商品数量</span>
+                    </th>
+                    <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                        <span>小计</span>
+                    </th>
+                    <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                        <span>交易操作</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody nz-tbody>
+                <tr nz-tbody-tr *ngFor="let data of nzTable.data; let i = index">
+                    <td nz-td [nzCheckbox]="true">
+                        <label nz-checkbox [(ngModel)]="data.checked" (ngModelChange)="refChecked()">
+                        </label>
+                    </td>
+                    <td nz-td><img src="{{data.pic}}">{{data.shopName}}</td>
+                    <td nz-td>￥{{data.money}}</td>
+                    <td nz-td>
+                        <nz-input-number (ngModelChange)="changeFn($event , i)" [(ngModel)]="data.number" name="number" [nzMin]="1" [nzStep]="1"></nz-input-number>
+                    </td>
+                    <td nz-td>￥{{data.money * data.number}}</td>
+                    <td nz-td><a (click)="deleteFn(data)">删除</a></td>
+                </tr>
+                <tr style="background: #F7F7F7;">
+                    <td colspan="5" style="font-weight: bold;">
+                        <span>
+                            应付金额: 
+                        </span>
+                        <span style="color: red;">￥{{amount}}</span>
+                    </td>
+                    <td>
+                        <button nz-button [nzType]="'primary'" (click)="order()">
+                            <span>下单</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div nz-col [nzSm]="2"></div>
+</div>

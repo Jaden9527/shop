@@ -1,0 +1,230 @@
+<div nz-row style="height: 30px;"></div>
+<div nz-row [nzGutter]="8" style="min-height: 600px">
+    <div nz-col [nzSm]="2"></div>
+    <div nz-col [nzSm]="20">
+        <nz-card [nzBordered]="false">
+            <nz-card-tab nzTabHeading="全部订单">
+                <nz-table #nzTable [nzSize]="'small'" [nzAjaxData]="list1" [nzIsPagination]="false" >
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>订单号</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货人</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货地址</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品信息</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品单价</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品数量</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>实付款</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>交易操作</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTable.data; let i = index">
+                            <td nz-td>{{data.orderId}}</td>
+                            <td nz-td>{{data.userName}}</td>
+                            <td nz-td>{{data.address}}</td>
+                            <td nz-td>
+                                <img src="{{data.pic}}">{{data.shopName}}</td>
+                            <td nz-td>￥{{data.money}}</td>
+                            <td nz-td>{{data.number}}</td>
+                            <td nz-td>￥{{data.amount}}</td>
+                            <td nz-td>
+                                <button *ngIf="data.status == '2'" nz-button [nzType]="'primary'" (click)="confirmFn(data)">
+                                    确认收货
+                                </button>
+                                <button *ngIf="data.status == '3'" nz-button [nzType]="'primary'" (click)="judgeFn(data)">
+                                    评价
+                                </button>
+                                <nz-tag *ngIf="data.status=='4'" [nzColor]="'orange'">已评价</nz-tag>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-card-tab>
+            <nz-card-tab nzTabHeading="待发货">
+                <nz-table #nzTable2 [nzSize]="'small'" [nzAjaxData]="list2" [nzIsPagination]="false" >
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>订单号</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货人</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货地址</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品信息</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品单价</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品数量</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>实付款</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>交易操作</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTable2.data; let i = index">
+                            <td nz-td>{{data.orderId}}</td>
+                            <td nz-td>{{data.userName}}</td>
+                            <td nz-td>{{data.address}}</td>
+                            <td nz-td>
+                                <img src="{{data.pic}}">{{data.shopName}}</td>
+                            <td nz-td>￥{{data.money}}</td>
+                            <td nz-td>{{data.number}}</td>
+                            <td nz-td>￥{{data.amount}}</td>
+                            <td nz-td></td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-card-tab>
+            <nz-card-tab nzTabHeading="已发货">
+                <nz-table #nzTable3 [nzSize]="'small'" [nzAjaxData]="list3"  [nzIsPagination]="false" >
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>订单号</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货人</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货地址</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品信息</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品单价</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品数量</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>实付款</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>交易操作</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTable3.data; let i = index">
+                            <td nz-td>{{data.orderId}}</td>
+                            <td nz-td>{{data.userName}}</td>
+                            <td nz-td>{{data.address}}</td>
+                            <td nz-td>
+                                <img src="{{data.pic}}">{{data.shopName}}</td>
+                            <td nz-td>￥{{data.money}}</td>
+                            <td nz-td>{{data.number}}</td>
+                            <td nz-td>￥{{data.amount}}</td>
+                            <td nz-td>
+                                <button *ngIf="data.status == '2'" nz-button [nzType]="'primary'" (click)="confirmFn(data)">
+                                    确认收货
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-card-tab>
+            <nz-card-tab nzTabHeading="已完成">
+                <nz-table #nzTable4 [nzSize]="'small'" [nzAjaxData]="list4" [nzIsPagination]="false">
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>订单号</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货人</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>收货地址</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品信息</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品单价</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>商品数量</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>实付款</span>
+                            </th>
+                            <th nz-th style="background: #F7F7F7;font-weight: bold;">
+                                <span>交易操作</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTable4.data; let i = index">
+                            <td nz-td>{{data.orderId}}</td>
+                            <td nz-td>{{data.userName}}</td>
+                            <td nz-td>{{data.address}}</td>
+                            <td nz-td>
+                                <img src="{{data.pic}}">{{data.shopName}}</td>
+                            <td nz-td>￥{{data.money}}</td>
+                            <td nz-td>{{data.number}}</td>
+                            <td nz-td>￥{{data.amount}}</td>
+                            <td nz-td>
+                                <button *ngIf="data.status == '3'" nz-button [nzType]="'primary'" (click)="judgeFn(data)">
+                                    评价
+                                </button>
+                                <nz-tag *ngIf="data.status=='4'" [nzColor]="'orange'">已评价</nz-tag>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-card-tab>
+        </nz-card>
+    </div>
+    <div nz-col [nzSm]="2"></div>
+</div>
+
+<nz-modal [nzVisible]="showModal" [nzMaskClosable]="false" [nzTitle]="'商品评价'" [nzContent]="modalContent" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+    [nzWidth]="'40%'">
+    <ng-template #modalContent>
+        <form nz-form [formGroup]="Form" (ngSubmit)="submitForm()">
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="6">
+                    <label>评分</label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-rate formControlName="number" name="'number'" nzAllowHalf></nz-rate>
+                </div>
+            </div>
+            <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="6">
+                    <label>评论</label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                    <nz-input formControlName="content" name="'content'" [nzType]="'textarea'" [nzPlaceHolder]="' '"></nz-input>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</nz-modal>
