@@ -14,7 +14,6 @@ import { SettingsService } from '@delon/theme';
 })
 export class InsertshopComponent implements OnInit {
 
-  amount = 0;
   form: FormGroup;
 
 

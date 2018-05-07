@@ -72,7 +72,7 @@
                     "text": "上架商品",
                     "link": "/index/shop/insertshop"
                 }, {
-                    "text": "下架商品",
+                    "text": "修改商品",
                     "link": "/index/shop/lowershop"
                 }, {
                     "text": "订单详情",

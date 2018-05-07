@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import swal, { SweetAlertType } from 'sweetalert2';
 import { ShopService } from '../shop.service';
@@ -13,13 +13,23 @@ import { SettingsService } from '@delon/theme';
 })
 export class LowershopComponent implements OnInit {
 
-  amount = 0;
+  form: FormGroup;
   query: any = {};
   list: any = [];
+  showModal = false;
 
   constructor(private service: ShopService,  public settings: SettingsService, private httpClient: HttpClient, private msg: NzMessageService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      pic: [null],
+      shopName: [null],
+      shopDesc: [null],
+      shopSpec: [null],
+      money: [null],
+      class: [null],
+      shopId: [null]
+    });
     this.load();
   }
 
@@ -45,6 +55,34 @@ export class LowershopComponent implements OnInit {
         this.msg.error(res.message);
       }
     });
+  }
+
+  /** 修改商品 */
+  updateFn(data) {
+    this.form.patchValue(data);
+    this.showModal = true;
+  }
+
+
+  handleCancel() {
+    this.showModal = false;
+    this.form.reset();
+  }
+
+  handleOk() {
+    const params:any = this.form.getRawValue();
+
+    this.service.postFn('/shop/update', params).subscribe((res: any) => {
+      if (res.success) {
+        this.msg.success(res.message);
+        this.load();
+      } else {
+        this.msg.error(res.message);
+      }
+    });
+
+    this.form.reset();
+    this.showModal = false;
   }
 
 }

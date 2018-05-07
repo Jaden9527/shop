@@ -97,7 +97,7 @@
     </nz-card-tab>
 </nz-card>
 
-<nz-modal [nzVisible]="showModal" [nzMaskClosable]="false" [nzTitle]="'修改密码'" [nzContent]="modalContent" (nzOnCancel)="handleCancel()"
+<nz-modal [nzVisible]="showModal" [nzMaskClosable]="false" [nzTitle]="'回复内容'" [nzContent]="modalContent" (nzOnCancel)="handleCancel()"
     (nzOnOk)="handleOk()" [nzWidth]="'40%'">
     <ng-template #modalContent>
         <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
