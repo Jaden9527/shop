@@ -97,7 +97,7 @@ export class UserLoginComponent implements OnDestroy {
             if (res) {
                 this.loading = false;
                 if (!res.success) {
-                    this.error = res.msg;
+                    this.error = res.message;
                     this.msg.error(res.message);
                     return;
                 }

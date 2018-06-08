@@ -2,8 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SettingsService } from '@delon/theme';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { SettingsService, TitleService, MenuService } from '@delon/theme';
+import { ACLService } from '@delon/acl';
 
 @Component({
     selector: 'passport-register',
@@ -29,7 +30,8 @@ export class UserRegisterComponent implements OnDestroy {
     httpHead = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
     constructor(fb: FormBuilder, private router: Router, public msg: NzMessageService, private http: HttpClient,
-        private settingsService: SettingsService,) {
+        private settingsService: SettingsService, private titleService: TitleService, private menuService: MenuService,
+        private aclService: ACLService,) {
         this.form = fb.group({
             userName: [null],
             account: [null],
@@ -112,7 +114,7 @@ export class UserRegisterComponent implements OnDestroy {
             if (res) {
                 this.loading = false;
                 if (!res.success) {
-                    this.error = res.msg;
+                    this.error = res.message;
                     this.msg.error(res.message);
                     return;
                 }
@@ -123,10 +125,34 @@ export class UserRegisterComponent implements OnDestroy {
                     userId: params.userId,
                     class: params.class,
                     address: params.address,
-                    mobile: params.mobile
+                    mobile: params.mobile,
+                    account: params.account,
                 };
                 this.settingsService.setUser(user);
                 localStorage.setItem('customer_user_info_qw',JSON.stringify(user));
+                
+                const httpHead = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+                // this.httpClient.get('/profile')
+                // this.httpClient.post('http://localhost:7001/menu', this.settingService.user.class, httpHead)
+                this.http.get('assets/app-data.json')
+                    .subscribe((res: any) => {
+                        // 应用信息：包括站点名、描述、年份
+                        this.settingsService.setApp({
+                            'name': '购物商城',
+                            'description': '购物商城'
+                        });
+                        // 用户信息：包括姓名、头像、邮箱地址
+                        this.settingsService.setUser(res.user);
+                        // ACL：设置权限为全量
+                        this.aclService.setFull(true);
+                        // 初始化菜单
+                        this.menuService.add(res.menu);
+                        
+                        // 设置页面标题的后缀
+                        this.titleService.suffix = '购物商城';
+
+                    }, (err: HttpErrorResponse) => {
+                    });
                 this.router.navigate(['/index']);
             }
         });
